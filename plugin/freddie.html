@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>WHC Berlin - WebVR Talk</title>
+
+    <style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    </style>
+    <script src="https://rawgit.com/aframevr/aframe/8c7c1ef/dist/aframe-master.min.js"></script>
+  </head>
+  <body>
+    <a-scene embedded class="stretch">
+      <a-sphere radius="3"  color="lime" position="0 3 -17">
+        <a-sphere src="../lib/images/eye.jpg"  radius="0.6" position="1.1 0.5 2.8" rotation="95 0 0"></a-sphere>
+        <a-sphere src="../lib/images/eye.jpg"  radius="0.6" position="-1.1 0.5 2.8"  rotation="95 0 0"></a-sphere>
+      </a-sphere>
+      <a-circle src="../lib/images/sand.jpeg" color="#f4eac5" rotation="-90 0 0" radius="300"></a-circle>
+      <a-sky src="../lib/images/sky.png"></a-sky>
+    </a-scene>
+  </body>
+</html>

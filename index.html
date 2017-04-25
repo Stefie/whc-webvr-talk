@@ -1,0 +1,476 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>WHC Berlin - WebVR Talk</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/custom.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/hybrid.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Bringing Virtual Reality to the Web with WebVR and A-Frame</h1>
+          <p>Women Who Code Berlin Meetup 25.04.2017</p>
+          <p><small>By Stefanie Doll - @akastefie</small></p>
+        </section>
+        <section>  <!-- Introduction -->
+          <h2>Introduction</h2>
+        </section>
+        <section data-background-color="#000000">  <!-- On different devices -->
+          <h2>WebVR - The Basics</h2>
+          <div>
+            <video data-autoplay src="./lib/movies/vr-demo-2.mp4" type="video/mp4" />
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>What is VR, what does it mean?</li>
+              <li>We all use web browsers on a daily basis, we use them on different devices</li>
+              <li>What do you need to bring VR to a web Browser?</li>
+            </ul>
+          </aside>
+        </section>
+        <section>  <!-- On different devices -->
+          <h2>WebVR - The Basics</h>
+          <div class="stretch">
+            <img class="stretch highlight-image" src="./lib/images/vr.jpg" alt="vr-concepts" />
+          </div>
+          </aside>
+        </section>
+        <section class="align-left"> <!-- Goals -->
+          <h2>Goals of the WebVR API </h2>
+          <ul>
+            <li class="fragment">Detect VR devices and query their capabilities</li>
+            <li class="fragment">Check if the device supports the presentation mode</li>
+            <li class="fragment">Poll the device’s position and orientation</li>
+            <li class="fragment">Request confirmation from the user to enter VR mode</li>
+            <li class="fragment">Display and re-render imagery on the device</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Request a list of the available VR devices.</li>
+              <li>Checks to see if the desired device supports the presentation modes the application needs.</li>
+              <li>If so, application advertises VR functionality to the user.</li>
+              <li>User performs an action that indicates they want to enter VR mode.</li>
+              <li>Request a VR session to present VR content with.</li>
+              <li>Begin a render loop that produces graphical frames to be displayed on the VR device.</li>
+              <li>Continue producing frames until the user indicates that they wish to exit VR mode.</li>
+              <li>End the VR session.</li>
+            </ul>
+          </aside>
+        </section>
+        <section>  <!-- On different devices -->
+          <h3>WebVR on different devices</h3>
+          <div class="flex-row image-icons image-icons-big">
+            <div class="fragment fade-up">
+              <img data-src="./lib/images/oculus-rift.png">
+              <p>VR Headsets</p>
+            </div>
+            <div class="fragment fade-up">
+              <img data-src="./lib/images/google-cardboard.png">
+              <p>Mobile Phone &amp;<br>Cardboard</p>
+            </div>
+            <div class="fragment fade-up">
+              <img data-src="./lib/images/tablet.png">
+              <p>Tablets</p>
+            </div>
+            <div class="fragment fade-up">
+              <img data-src="./lib/images/desktop.png">
+              <p>Desktop</p>
+            </div>
+          </div>
+          <aside class="notes">
+            <p>With WebVR, you don't produce VR content for a certian device, the VR content just matches the device you're using</p>
+          </aside>
+        </section>
+        <section class="align-left"> <!-- Status/ Background -->
+          <h2>Background</h2>
+          <ul>
+            <li class="fragment fade-up">WebVR API was conceived in 2014</li>
+            <li class="fragment fade-up">Javascript Web API</li>
+            <li class="fragment fade-up">W3C community group</li>
+            <li class="fragment fade-up">Google, Samsung, Microsoft and Mozilla currently iterating WebVR 1.0 API</li>
+            <li class="fragment fade-up">Editors Draft at W3C</li>
+          </ul>
+        </section>
+        <section> <!-- Browser support -->
+          <h2>Browser Support</h2>
+          <div class="flex-row image-icons fragment fade-up" data-fragment-index="1">
+            <div>
+              <img src="./lib/images/edge.jpg">
+              <p>Microsoft Edge</p>
+            </div>
+            <div>
+              <img src="./lib/images/chrome.png">
+              <p>Chrome for Android</p>
+            </div>
+            <div>
+              <img src="./lib/images/firefox-nightly.png">
+              <p>Firefox Nightly</p>
+            </div>
+            <div>
+              <img src="./lib/images/chromium.png">
+              <p>Chromium</p>
+            </div>
+          </div>
+          <div  class="flex-row image-icons">
+            <div class="fragment fade-up" data-fragment-index="2">
+              <img src="./lib/images/samsung-browser.png">
+              <p>Samsung Internet</p>
+            </div>
+            <div class="fragment fade-up" data-fragment-index="2">
+              <img src="./lib/images/carmel.png">
+              <p>Oculus Carmel</p>
+            </div>
+            <div class="fragment fade-up" data-fragment-index="2">
+              <img src="./lib/images/servo.png">
+              <p>Servo</p>
+            </div>
+            <div class="fragment fade-up" data-fragment-index="3">
+              <img src="./lib/images/google-cardboard.png">
+              <p>WebVR Polyfill</p>
+            </div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>Edge Windows and Mixed Reality devices</li>
+              <li>Chrome on Android and Daydream</li>
+              <li>Firefix Web Nightly and HTC Vive</li>
+              <li>Chromium HTC Vive Oculus Rift</li>
+              <li>SI Samsung Galaxy and Gear VR</li>
+              <li>Oculus Carmel Gear VR</li>
+              <li>Servo on Google Daydream and HTC Vive</li>
+            </ul>
+          </aside>
+        </section>
+        <section>  <!-- other web API's -->
+          <h3>Use WebVR together with other Web API's</h3>
+          <div class="flex-row image-icons image-icons-big">
+            <div class="fragment fade-up">
+              <img data-src="./lib/images/webgl.png">
+              <p>WebGL API</p>
+            </div>
+            <div class="fragment fade-up">
+              <img data-src="./lib/images/webaudio.png">
+              <p>Web Audio API</p>
+            </div>
+            <div class="fragment fade-up">
+              <img data-src="./lib/images/gamepad.png">
+              <p>Gampad API</p>
+            </div>
+            <div class="fragment fade-up">
+              <img data-src="./lib/images/speech.png">
+              <p>Speech API</p>
+            </div>
+          </div>
+        </section>
+        <section class="align-left">  <!-- users -->
+            <h2>WebVR for users</h2>
+            <ul>
+              <li class="fragment fade-up">Everybody is already connected</li>
+              <li class="fragment fade-up">No downloads, installs or additional hardware</li>
+              <li class="fragment fade-up">Cross Platform and Cross Device</li>
+              <li class="fragment fade-up">Everyone already owns a WebVR-Ready device</li>
+              <li class="fragment fade-up">Easy to share</li>
+
+            <ul>
+        </section>
+        <section class="align-left">  <!--  Developers -->
+            <h2>WebVR for developers</h2>
+            <ul>
+              <li class="fragment fade-up">Opens up VR programming to a whole new group of developers</li>
+              <li class="fragment fade-up">Easily extensible - It's all Javascript</li>
+              <li class="fragment fade-up">Works well with existing libraries and frameworks</li>
+              <li class="fragment fade-up">Open Source, everyone can learn</li>
+              <li class="fragment fade-up">Rapid prototyping</li>
+            <ul>
+        </section>
+        <section class="align-left">  <!-- VR -->
+            <h2>WebVR <span class="lowercase">vs.</span> VR Headsets</h2>
+            <ul>
+              <li class="fragment fade-up" data-fragment-index="1">Not an either-or-situation</li>
+              <li class="fragment fade-up" data-fragment-index="2">VR in general is still a very young technology</li>
+
+            <li class="arrow-list fragment fade-up" data-fragment-index="3">
+              <div>
+                <p>more ideas</p>
+                <p class="fragment fade-left" data-fragment-index="4"><span class="icon-arrow-right"></span>more concepts</p>
+                <p class="fragment fade-left" data-fragment-index="5"><span class="icon-arrow-right"></span>more usecases</p>
+              </div>
+              <div>
+                <p class="fragment fade-left" data-fragment-index="8"><span class="icon-redo"></span>more users<span class="icon-arrow-left"></span></p>
+                <p class="fragment fade-left" data-fragment-index="7">more feedback<span class="icon-arrow-left"></span></p>
+                <p class="fragment fade-left" data-fragment-index="6"><span class="icon-reply"></span>more experience</p>
+              </div>
+            </li>
+              <li class="fragment fade-up" data-fragment-index="10">Everyone benefits</li>
+            <ul>
+        </section>
+        <section>  <!-- Usecases -->
+          <h2>Possible usecases</h2>
+          <ul class="fragment fade-up">
+            <li>Data &amp; Object visualization</li>
+            <li>Interactive Storytelling</li>
+            <li>Artistic experiences</li>
+            <li>360 Videos and Images</li>
+            <li>Gaming</li>
+            <li>And more...</li>
+          </ul>
+        </section>
+        <section>  <!-- Amazing! -->
+            <h2>Sounds amazing!</br>How do I get started?</h2>
+        </section>
+        <section class="align-left" data-background-image="./lib/images/aframe.png"
+        data-background-position="left">  <!-- A-Frame -->
+          <h2>A-Frame VR</h2>
+          <h3>An open source framework for building WebVR Experiences</h3>
+          <ul class="fragment fade-up">
+            <li>WebGL API</li>
+            <li>WebVR Polyfill</li>
+            <li>three.js</li>
+            <li>Gamepad API integration</li>
+            <li>Web Audio API integration</li>
+          </ul>
+        </section>
+        <section class="align-left">  <!-- A-Frame about -->
+          <h2>A-Frame VR</h2>
+          <ul>
+            <li class="fragment fade-up">Takes care of all the default tasks</li>
+            <li class="fragment fade-up">Allows you to write WebVR Content in a HTML-Like syntax</li>
+            <li class="fragment fade-up">Entity Component System</li>
+            <li class="fragment fade-up">Open and easy to customize</li>
+            <li class="fragment fade-up">For all skill levels</li>
+          </ul>
+        </section>
+        <section>  <!-- a-scene -->
+          <h2>&lt;a-scene&gt;</h2>
+          <p class="fragment fade-up">Basic setup of repetitive tasks &amp; components needed for 3D</p>
+          <ul class="fragment fade-up">
+            <li>WebGL setup</li>
+            <li>Canvas setup</li>
+            <li>Default camera</li>
+            <li>Default lightning</li>
+            <li>Initializes scene rednering and re-rendering</li>
+          </ul>
+        </section>
+        <section>  <!-- a-entity -->
+          <h2>&lt;a-entity&gt;</h2>
+          <p class="fragment fade-up">Empty container by default</p>
+          <p class="fragment fade-up">Behaviour, appearance &amp; functionality are added by components</p>
+          <img class="fragment fade-up" src="./lib/images/components.png" />
+        </section>
+        <section data-transition="fade-in none-out">  <!-- primitives -->
+          <h3>Common usecases as primitives</h3>
+          <p class="fragment fade-up">Entities with component defaults</p>
+          <img class="fragment fadeup" src="./lib/images/primitives.png" />
+        </section>
+        <section data-transition="none-in fade-out">  <!-- primitives -->
+          <h3>Common usecases as primitives</h3>
+          <p>Entities with component defaults</p>
+          <img src="./lib/images/primitives-2.png" />
+        </section>
+        <section>  <!-- Hi Freddie -->
+          <h2>Say "Hi" to Freddie!</h2>
+          <iframe allowfullscreen class="stretch" src="lib/scenes/freddie.html" width="100%" height="400px"></iframe>
+        </section>
+        <section>  <!-- Code demo -->
+          <h3>Freddie in 9 lines of code</h3>
+          <div class="container">
+            <pre>
+              <code data-trim data-noescape class="fragment-code">
+              &lt;html&gt;
+                &lt;head&gt;
+                  &lt;script src="/aframe.min.js"&gt;&lt;/script&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                  &lt;a-scene&gt;
+                    <span class="fragment fade-in" data-fragment-index="1">
+                    &lt;a-circle src="sand.jpeg" rotation="-90 0 0" radius="300"&gt;&lt;/a-circle&gt;
+                    </span>
+                    <span class="fragment fade-in" data-fragment-index="2">
+                    &lt;a-sky src="sky.png"&gt;&lt;/a-sky&gt;
+                    </span>
+                    <span class="fragment fade-in" data-fragment-index="3">
+                    &lt;a-sphere radius="3" color="lime" position="0 3 -15" id="freddie"&gt;
+                    </span>
+                    <span class="fragment fragment-eye fade-in" data-fragment-index="4">
+                      &lt;a-entity geometry="primitive: sphere; radius: 0.6" material="src: eye.jpg"
+                                position="-1.1 0.5 2.8" rotation="95 0 0" id="left-eye" &gt;&lt;/a-entity&gt;
+                    </span>
+                    <span class="fragment fragment-eye fade-in" data-fragment-index="5">
+                      &lt;a-entity geometry="primitive: sphere; radius: 0.6" material="src: eye.jpg"
+                                position="1.1 0.5 2.8" rotation="95 0 0" id="right-eye"&gt;&lt;/a-entity&gt;
+                    </span>
+                    <span class="fragment fade-in" data-fragment-index="3">
+                    &lt;/a-sphere&gt;
+                    </span>
+
+                  &lt;/a-scene&gt;
+                &lt;/body&gt;
+              &lt;/html&gt;
+              </code>
+            </pre>
+            <img class="fragment fade-in check" data-fragment-index="6" src="lib/images/check.png" />
+          </div>
+          <div class="image-list">
+            <img class="fragment fade-in" data-fragment-index="1" src="lib/images/sand.jpeg"/>
+            <img class="fragment fade-in" data-fragment-index="2" src="lib/images/sky.png"/>
+            <img class="fragment fade-in" data-fragment-index="4" src="lib/images/eye.jpg" />
+          </div>
+        </section>
+        <section>  <!-- Inspector live demo -->
+          <h2 class="fragment fade-in">A-Frame Inspector <small>(ctrl+alt+i)</small></h2>
+          <iframe allowfullscreen class="stretch" src="lib/scenes/freddie.html" width="100%" height="400px"></iframe>
+        </section>
+        <section class="align-left">
+          <h2>A-Frame ecosystem</h2>
+          <ul>
+            <li class="fragment">Full access to three.js library</li>
+            <li class="fragment">Write your own components</li>
+            <li class="fragment">Integrate 3rd party Javascript libraries</li>
+            <li class="fragment">Works well on top of other libraries like Angular, React, Vue, jQuery, d3</li>
+            <li class="fragment">Contribute yourself</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Contribute</h2>
+          <p class="flex-list"><span>Community</span><a href="https://aframe.io/community/" target="blank">https://aframe.io/community/</a></p>
+          <p class="flex-list"><span>Updates</span><a href="https://aframe.io/blog/" target="blank">https://aframe.io/blog/</a></p>
+          <p class="flex-list"><span>Slack</span><a href="https://aframevr.slack.com" target="blank">https://aframevr.slack.com</a></p>
+        </section>
+        <section>  <!-- Examples -->
+          <h2>Examples</h2>
+        </section>
+        <section data-background-color="#000000">  <!-- Musical Forest -->
+          <div class="video-overlay">
+            <h4><a href="https://www.webvrexperiments.com/experiment/musical-forest" target="blank" class="block">The Musical Forest</a></h4>
+            <p>by Google Creative Lab</p>
+          </div>
+          <iframe class="stretch video-wrapper" src="https://www.youtube.com/embed/RIpob33uUEU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+          <aside class="notes">
+            Community library for networked content @HaydenLee37
+          </aside>
+        </section>
+        <section data-background-color="#000000">
+          <div class="video-overlay">
+            <h4><a href="https://www.washingtonpost.com/video/mars/public/" target="blank" class="block">Mars - An interactive journey</a></h4>
+            <p>by University of Texas &amp; Washington Post</p>
+          </div>
+          <video class="stretch video-wrapper" data-autoplay src="./lib/movies/journey-to-mars.mov" />
+        </section>
+        <section data-background-color="#000000">
+          <div class="video-overlay twitter" >
+            <h4><a href="https://aframe.io/a-painter/" target="blank" class="block">A-Painter</a></h4>
+            <p>by MozVR || <small>Video by @fernandojsg</small></p>
+          </div>
+          <div class="stretch video-wrapper">
+            <blockquote class="twitter-video stretch" data-lang="en"><p lang="en" dir="ltr">Oculus touch support just landed in A-Painter, go and give it a try! <a href="https://t.co/zolRp7Emry">https://t.co/zolRp7Emry</a> <a href="https://twitter.com/hashtag/aframevr?src=hash">#aframevr</a> <a href="https://twitter.com/hashtag/webvr?src=hash">#webvr</a> <a href="https://twitter.com/hashtag/OculusRift?src=hash">#OculusRift</a> <a href="https://t.co/7ff4rf550w">pic.twitter.com/7ff4rf550w</a></p>&mdash; Fernando Serrano (@fernandojsg) <a href="https://twitter.com/fernandojsg/status/856578890424254464">April 24, 2017</a></blockquote>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+        </section>
+        <section data-background-color="#000000">
+          <div class="video-overlay">
+            <h4><a href="https://bandexplorervr.com/vr/" target="blank" class="block">Band Explorer</a></h4>
+            <p>by @wearethetin</p>
+          </div>
+          <img src="./lib/images/bandexplorer.jpg" class="stretch plain-image video-wrapper" />
+        </section>
+        <section data-background-color="#000000">
+            <div class="video-overlay">
+              <h4><a href="https://www.washingtonpost.com/video/mars/public/" target="blank" class="block">Adit- Data Visualization</a></h4>
+              <p>@datatitian</p>
+            </div>
+            <img class="stretch plain-image video-wrapper" src="./lib/images/adit.gif" />
+        </section>
+        <section class="align-left">  <!-- Outlook -->
+          <h2>Outlook</h2>
+          <ul>
+            <li class="fragment">W3C is currently working on specs for  v2.0.0</li>
+            <li class="fragment">Browser Support is coming</li>
+            <li class="fragment">WebAR in the making</li>
+            <li class="fragment">More WebVR-Frameworks</li>
+            <li class="fragment">ReactVR was just released</li>
+          </ul>
+        </section>
+        <section>  <!-- End -->
+            <h3>Start playing, start building!</h3>
+            <pre>
+              <code data-trim class="html">
+                &lt;html&gt;
+                  &lt;head&gt;
+                    &lt;script src="/aframe.min.js"&gt;&lt;/script&gt;
+                  &lt;/head&gt;
+                  &lt;body&gt;
+                    <a-scene>
+                      <!--
+                      // Insert your amazing ideas here!
+                      -->
+                    </a-scene>
+                  &lt;/body&gt;
+                &lt;/html&gt;
+              </code>
+            </pre>
+            <h3 class="fragment fade-up">Thank you for listening</h3>
+            <small class="fragment fade-up"><a href="https://stefie.github.io/whc-webvr-talk/" target="_blank" title="view slides">https://stefie.github.io/whc-webvr-talk/</small>
+        </section>
+        <section class="align-left">
+          <h3>Examples shown during the talk</h3>
+            <p><a target="_blank" href="https://www.webvrexperiments.com/experiment/musical-forest">The Musical Forest by Google Creative Lab</a></p>
+            <p><a target="_blank" href="https://www.washingtonpost.com/video/mars/public/">Mars - An interactive journey</a></p>
+            <p><a target="_blank" href="https://playcanvas.com/">A-Painter</a></p>
+            <p><a target="_blank" href="https://wmurphyrd.shinyapps.io/adit/">Adit- Data Visualization</a></p>
+            <p><a target="_blank" href="https://bandexplorervr.com/vr/">Band Explorer</a></p>
+        </section>
+        <section class="align-left">
+          <h3>Further reading</h3>
+            <p><a target="_blank" href="https://w3c.github.io/webvr/">W3C WebVR Specs</a></p>
+            <p><a target="_blank" href="https://webvr.info/">webvr.info</a></p>
+            <p><a target="_blank" href="http://aframe.io">A-Frame VR</a></p>
+            <p><a target="_blank" href="https://facebook.github.io/react-vr/">React VR</a></p>
+            <p><a target="_blank" href="https://webvr.rocks/">Check browser support on WebVR.rocks</a></p>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+
+        window.addEventListener("mousedown", handleClick, false);
+        window.addEventListener("contextmenu", function(e) { e.preventDefault(); }, false);
+
+        function handleClick(e) {
+        	e.preventDefault();
+        	if(e.button === 0) Reveal.next();
+        	if(e.button === 2) Reveal.prev();
+        }
+    </script>
+  </body>
+</html>
