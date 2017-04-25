@@ -58,7 +58,6 @@
             <li class="fragment">Detect VR devices and query their capabilities</li>
             <li class="fragment">Check if the device supports the presentation mode</li>
             <li class="fragment">Poll the device’s position and orientation</li>
-            <li class="fragment">Request confirmation from the user to enter VR mode</li>
             <li class="fragment">Display and re-render imagery on the device</li>
           </ul>
           <aside class="notes">
@@ -183,9 +182,9 @@
             <h2>WebVR for users</h2>
             <ul>
               <li class="fragment fade-up">Everybody is already connected</li>
+              <li class="fragment fade-up">Everyone already owns a WebVR-Ready device</li>
               <li class="fragment fade-up">No downloads, installs or additional hardware</li>
               <li class="fragment fade-up">Cross Platform and Cross Device</li>
-              <li class="fragment fade-up">Everyone already owns a WebVR-Ready device</li>
               <li class="fragment fade-up">Easy to share</li>
 
             <ul>
@@ -390,13 +389,6 @@
           </div>
           <img src="./lib/images/bandexplorer.jpg" class="stretch plain-image video-wrapper" />
         </section>
-        <section data-background-color="#000000">
-            <div class="video-overlay">
-              <h4><a href="https://www.washingtonpost.com/video/mars/public/" target="blank" class="block">Adit- Data Visualization</a></h4>
-              <p>@datatitian</p>
-            </div>
-            <img class="stretch plain-image video-wrapper" src="./lib/images/adit.gif" />
-        </section>
         <section class="align-left">  <!-- Outlook -->
           <h2>Outlook</h2>
           <ul>
@@ -433,7 +425,6 @@
             <p><a target="_blank" href="https://www.webvrexperiments.com/experiment/musical-forest">The Musical Forest by Google Creative Lab</a></p>
             <p><a target="_blank" href="https://www.washingtonpost.com/video/mars/public/">Mars - An interactive journey</a></p>
             <p><a target="_blank" href="https://playcanvas.com/">A-Painter</a></p>
-            <p><a target="_blank" href="https://wmurphyrd.shinyapps.io/adit/">Adit- Data Visualization</a></p>
             <p><a target="_blank" href="https://bandexplorervr.com/vr/">Band Explorer</a></p>
         </section>
         <section class="align-left">
@@ -459,11 +450,14 @@
           { src: 'plugin/markdown/marked.js' },
           { src: 'plugin/markdown/markdown.js' },
           { src: 'plugin/notes/notes.js', async: true },
+          { src: 'socket.io/socket.io.js', async: true },
+          { src: 'plugin/notes-server/client.js', async: true },
           { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
         ]
       });
 
         window.addEventListener("mousedown", handleClick, false);
+
         window.addEventListener("contextmenu", function(e) { e.preventDefault(); }, false);
 
         function handleClick(e) {
